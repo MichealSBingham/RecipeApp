@@ -6,3 +6,41 @@
 //
 
 import Foundation
+import SwiftUI
+
+
+
+struct MealListView: View {
+    @StateObject var viewModel = MealListViewModel()
+    
+    var body: some View {
+        NavigationView {
+            Group {
+                if viewModel.isLoading {
+                    ProgressView()
+                } else if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                } else {
+                    List(viewModel.meals) { meal in
+                        NavigationLink(destination: MealDetailView(mealID: meal.id)) {
+                            HStack {
+                                AsyncImageView(url: meal.thumbnail)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(8)
+                                
+                                Text(meal.name)
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Desserts")
+            .onAppear {
+                if viewModel.meals.isEmpty{
+                    viewModel.fetchMeals()
+                }
+                
+            }
+        }
+    }
+}
