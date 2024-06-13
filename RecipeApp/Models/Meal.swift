@@ -7,7 +7,8 @@
 
 import Foundation
 
-
+/// Represents a meal with basic details.
+/// Conforms to `Identifiable` and `Codable` protocols.
 struct Meal: Identifiable, Codable {
     let id: String
     let name: String

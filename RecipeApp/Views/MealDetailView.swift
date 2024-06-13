@@ -9,9 +9,10 @@ import SwiftUI
 
 
 
+/// View for displaying the details of a specific meal.
 struct MealDetailView: View {
-    @StateObject var viewModel = MealDetailViewModel()
-    let mealID: String
+    @StateObject var viewModel = MealDetailViewModel() ///< The ViewModel for managing meal detail data.
+    let mealID: String ///< The ID of the meal to display details for.
     
     var body: some View {
         ScrollView {

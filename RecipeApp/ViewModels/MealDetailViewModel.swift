@@ -7,13 +7,19 @@
 
 import Foundation
 
+
+/// ViewModel for managing the details of a specific meal.
+/// Fetches meal details from the API and handles loading and error states.
 class MealDetailViewModel: ObservableObject {
-    @Published var mealDetail: MealDetail? = nil
-    @Published var isLoading = false
-    @Published var errorMessage: String? = nil
+    @Published var mealDetail: MealDetail? = nil ///< The detailed information about a meal.
+    @Published var isLoading = false ///< Indicates whether the data is being loaded.
+    @Published var errorMessage: String? = nil ///< Stores any error messages.
     
     private let networkManager = NetworkManager()
     
+    /// Fetches the details of a specific meal by its ID.
+    /// - Parameter id: The ID of the meal to fetch details for.
+    /// Updates `mealDetail`, `isLoading`, and `errorMessage` properties based on the result.
     func fetchMealDetail(id: String) {
         isLoading = true
         errorMessage = nil

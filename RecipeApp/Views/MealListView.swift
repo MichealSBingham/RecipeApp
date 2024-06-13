@@ -10,8 +10,10 @@ import SwiftUI
 
 
 
+
+/// View for displaying the list of meals.
 struct MealListView: View {
-    @StateObject var viewModel = MealListViewModel()
+    @StateObject var viewModel = MealListViewModel() ///< The ViewModel for managing meal list data.
     
     var body: some View {
         NavigationView {
@@ -36,10 +38,9 @@ struct MealListView: View {
             }
             .navigationTitle("Desserts")
             .onAppear {
-                if viewModel.meals.isEmpty{
+                if viewModel.meals.isEmpty {
                     viewModel.fetchMeals()
                 }
-                
             }
         }
     }

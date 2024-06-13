@@ -8,11 +8,13 @@
 import SwiftUI
 
 
+
+/// View for loading and displaying an image asynchronously with caching support.
 struct AsyncImageView: View {
-    @State private var image: UIImage? = nil
-    @State private var isLoading = false
+    @State private var image: UIImage? = nil ///< The loaded image.
+    @State private var isLoading = false ///< Indicates whether the image is being loaded.
     
-    let url: String
+    let url: String ///< The URL of the image to load.
     
     var body: some View {
         Group {
@@ -21,12 +23,15 @@ struct AsyncImageView: View {
                     .resizable()
                     .scaledToFit()
             } else {
-                ProgressView()
-                    .onAppear(perform: loadImage)
+                ZStack {
+                    ProgressView()
+                        .onAppear(perform: loadImage)
+                }
             }
         }
     }
     
+    /// Loads the image from the cache or URL.
     private func loadImage() {
         if let cachedImage = ImageCache.shared.getImage(forKey: url) {
             self.image = cachedImage

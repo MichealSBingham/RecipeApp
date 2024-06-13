@@ -7,13 +7,18 @@
 
 import Foundation
 
+
+/// ViewModel for managing the list of meals.
+/// Fetches meals from the API and handles loading and error states.
 class MealListViewModel: ObservableObject {
-    @Published var meals = [Meal]()
-    @Published var isLoading = false
-    @Published var errorMessage: String? = nil
+    @Published var meals = [Meal]() ///< The list of meals.
+    @Published var isLoading = false ///< Indicates whether the data is being loaded.
+    @Published var errorMessage: String? = nil ///< Stores any error messages.
     
     private let networkManager = NetworkManager()
     
+    /// Fetches the list of meals from the API.
+    /// Updates `meals`, `isLoading`, and `errorMessage` properties based on the result.
     func fetchMeals() {
         isLoading = true
         errorMessage = nil

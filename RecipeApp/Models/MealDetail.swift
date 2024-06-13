@@ -10,10 +10,10 @@ import Foundation
 
 
 struct MealDetail: Codable {
-    let id: String
-    let name: String
-    let instructions: String
-    let thumbnail: String
+    let id: String        ///< The unique identifier of the meal.
+    let name: String      ///< The name of the meal.
+    let instructions: String ///< The instructions for preparing the meal.
+    let thumbnail: String ///< The URL of the meal's thumbnail image.
     
     let strIngredient1: String?
     let strIngredient2: String?
@@ -74,6 +74,7 @@ struct MealDetail: Codable {
              strMeasure16, strMeasure17, strMeasure18, strMeasure19, strMeasure20
     }
     
+    /// Combines all ingredients into a single array, excluding empty values.
     var allIngredients: [String] {
         return [
             strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5,
@@ -83,6 +84,8 @@ struct MealDetail: Codable {
         ].compactMap { $0 }.filter { !$0.isEmpty }
     }
     
+
+     /// Combines all measurements into a single array, excluding empty values.
     var allMeasurements: [String] {
         return [
             strMeasure1, strMeasure2, strMeasure3, strMeasure4, strMeasure5,

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The main entry point for the RecipeApp.
 @main
 struct RecipeAppApp: App {
     var body: some Scene {
